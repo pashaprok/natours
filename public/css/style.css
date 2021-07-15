@@ -608,6 +608,20 @@ body {
   -ms-scroll-snap-type: x mandatory;
   scroll-snap-type: x mandatory;
 }
+
+.reviews::-webkit-scrollbar {
+  width: 5px;
+}
+
+.reviews::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.reviews::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background-color: #f7f7f7;
+}
+
 .reviews__card {
   width: 30rem;
   padding: 4rem;
@@ -650,6 +664,13 @@ body {
   font-size: 1.5rem;
   font-weight: 700;
   text-transform: uppercase;
+}
+.reviews__tour-link {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #777;
 }
 .reviews__text {
   font-size: 1.5rem;

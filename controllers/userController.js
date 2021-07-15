@@ -7,7 +7,7 @@ const factory = require('./handlerFactory');
 
 // const multerStorage = multer.diskStorage({
 //   destination: (req, file, cb) => {
-//     cb(null, 'pulic/img/users');
+//     cb(null, 'public/img/users');
 //   },
 //   fileName: (req, file, cb) => {
 //     const ext = file.mimetype.split('/')[1];

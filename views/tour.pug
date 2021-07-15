@@ -86,7 +86,6 @@ block content
             each review in tour.reviews
                 +reviewCard(review)
 
-
     section.section-cta
         .cta
             .cta__img.cta__img--logo
@@ -101,3 +100,22 @@ block content
                     button.btn.btn--green.span-all-rows#book-tour(data-tour-id=`${tour.id}`) Book tour now!
                 else 
                     a.btn.btn--green.span-all-rows(href='/login') Log in to book tour
+
+    if user
+        section.section-reviewform
+            .login-form
+                h2.heading-secondary.ma-bt-lg Share your impressions of the tour!
+                form.form.form--review(data-tour-id=`${tour.id}`, data-user-id=`${user.id}`)
+                    .form__group
+                        label.form__label(for='review') Your review
+                        input#review.form__input(type='text', placeholder='text here...', required)
+                    .form__group.ma-bt-md
+                        label.form__label(for='rating') Your mark
+                        select#rating(name="rating", form="form--review", required)
+                            option(value="1")= 1
+                            option(value="2")= 2
+                            option(value="3")= 3
+                            option(value="4")= 4
+                            option(value="5")= 5
+                    .form__group
+                        button.btn.btn--green Give feedback!
