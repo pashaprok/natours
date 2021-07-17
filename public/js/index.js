@@ -7,6 +7,7 @@ import { forgotPassword, resetPassword } from './forgotPassword';
 import { postReview } from './review';
 import { updateSettings } from './updateSettings';
 import { bookTour } from './stripe';
+import { showAlert } from './alerts';
 
 // DOM ELEMENTS
 const mapBox = document.getElementById('map');
@@ -116,3 +117,6 @@ if (reviewForm)
 
     postReview(review, rating, user, tour);
   });
+
+const alertMessage = document.querySelector('body').dataset.alert;
+if (alertMessage) showAlert('success', alertMessage, 20);
