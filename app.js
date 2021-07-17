@@ -8,6 +8,7 @@ const xss = require('xss-clean');
 const hpp = require('hpp');
 const cookieParser = require('cookie-parser');
 const compression = require('compression');
+const cors = require('cors');
 
 const AppError = require('./utils/appError');
 const globalErrorHandler = require('./controllers/errorController');
@@ -15,6 +16,7 @@ const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const reviewRouter = require('./routes/reviewRoutes');
 const bookingRouter = require('./routes/bookingRoutes');
+const bookingController = require('./controllers/bookingRController');
 const viewRouter = require('./routes/viewRoutes');
 
 const app = express();
@@ -25,6 +27,16 @@ app.set('view engine', 'pug');
 app.set('views', path.join(__dirname, 'views'));
 
 // global middlewares
+
+// implement CORS
+app.use(cors());
+// Access-Control-Allow-Origin *
+// api.natours.com, front-end natours.com
+// app.use(cors({
+//   origin: 'https://www.natours.com'
+// }))
+
+app.options('*', cors());
 
 // serving static files
 app.use(express.static(path.join(__dirname, 'public')));
@@ -65,6 +77,12 @@ const limiter = rateLimit({
   message: 'too many request from this IP, please try again in an hour',
 });
 app.use('/api', limiter);
+
+app.post(
+  '/webhook-checkout',
+  express.raw({ type: 'application/json' }),
+  bookingController.webhookCheckout
+);
 
 // body parser, reading data from body into req.body
 app.use(express.json({ limit: '10kb' }));
